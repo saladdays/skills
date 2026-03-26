@@ -1,0 +1,13 @@
+{
+  "name": "design-md-generator",
+  "owner": {
+    "name": "saladdays"
+  },
+  "plugins": [
+    {
+      "name": "design-md",
+      "source": "plugins/design-md",
+      "description": "対話を通じてプロダクトに合った DESIGN.md を生成する。AIがつくるUIに一貫性を。"
+    }
+  ]
+}
