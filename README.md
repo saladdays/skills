@@ -1,160 +1,133 @@
 # DESIGN.md Generator
 
-AIが一貫したUIを生成するための **DESIGN.md** を、対話形式で作成する Claude Code スキル。
+**AIでUIをつくると、画面ごとにデザインがバラバラになりませんか？**
 
-## DESIGN.md とは
+1画面目はいい感じだったのに、2画面目でフォントが変わり、3画面目で色がズレて、修正するほど最初の良さが消えていく——。
 
-DESIGN.md は、AIエージェントがUIを生成・修正する際の **ビジュアル判断基準** を定義するMarkdownファイルです。
+DESIGN.md はこの問題を解決します。
 
-```
-README.md              = 人間向けプロジェクト概要
-CLAUDE.md / AGENTS.md  = AIエージェント向け開発指示
-DESIGN.md              = AIエージェント向けビジュアル判断基準
-```
+あなたのプロダクトの「デザインの判断基準」を1つのファイルにまとめるだけで、AIがつくるUIに統一感が生まれます。すでにあるサービスの世界観やFigmaのデザイン、参考にしているサービスの雰囲気——そういった「すでにあるもの」を出発点にできるので、ゼロから考える必要はありません。デザインの専門知識がなくても、対話に答えていくだけで、あなたのプロダクトに合った DESIGN.md が数分でできあがります。
 
-### なぜ必要か
+### DESIGN.md あり / なし の比較
 
-AIにUIを生成させると、**1画面目は良いが、改善するたびにデザインがズレていく**。複数画面を作ると、画面間でトーン・色・スペーシングがバラバラになる。
+同じ「ファッションEC」を、DESIGN.md **あり** と **なし** でそれぞれ5画面つくった結果です。
 
-根本原因は、デザインの「判断基準」がAIに渡されていないこと。値（トークン）はあっても「なぜその値か」「どう使い分けるか」がないため、AIは毎回独自に判断し、一貫性が崩れる。
+**DESIGN.md あり** — 全画面で色・フォント・コンポーネントが統一されている
 
-DESIGN.md はこの「判断基準」を明文化し、AIが一貫した判断を行うためのドキュメントです。
+| トップページ | カート |
+|---|---|
+| ![WITH - トップ](./images/with-ec-top.png) | ![WITH - カート](./images/with-ec-cart.png) |
 
-### WITHOUT vs WITH の比較
+**DESIGN.md なし** — 画面ごとにフォント・色味・ヘッダー構造が異なる
 
-DESIGN.md **なし** で5画面を生成した場合:
-- 画面ごとにカラーパレットが異なる（4セット以上）
-- 見出しフォントが毎回変わる
-- ボタンの角丸やホバー表現が不統一
-- 手直しに **6-10時間** 必要
+| トップページ | カート |
+|---|---|
+| ![WITHOUT - トップ](./images/without-ec-top.png) | ![WITHOUT - カート](./images/without-ec-cart.png) |
 
-DESIGN.md **あり** で5画面を生成した場合:
-- 全画面でカラー・フォント・コンポーネントが完全統一
-- Creative North Star（メタファー）に基づいたブランド表現
-- DESIGN.md の生成は **数分**
+DESIGN.md がない場合、5画面で4種類の見出しフォントと4セットのカラーパレットが混在しました。統一するための手直しに6〜10時間。DESIGN.md をつくるのは数分の対話です。
 
-## Quick Start
-
-### 1. スキルをインストール
-
-```bash
-# このリポジトリの skills/ を .claude/skills/ にコピー
-cp -r skills/generate-design-md ~/.claude/skills/generate-design-md
-```
-
-### 2. DESIGN.md を生成
-
-Claude Code で対話形式で生成します:
-
-```
-あなた: このプロジェクトのDESIGN.mdを作りたい
-Claude: どんなプロダクトですか？ 誰が使いますか？
-あなた: 20-30代向けのレシピ共有サービス。温かく親しみやすい印象で。
-Claude: （DESIGN.md を生成）
-```
-
-### 3. プロジェクトに配置
-
-```bash
-# プロジェクトルートに配置
-mv DESIGN.md /path/to/your/project/
-
-# CLAUDE.md から参照（推奨）
-echo "@DESIGN.md" >> /path/to/your/project/CLAUDE.md
-```
-
-これだけで、以降のAI生成UIに一貫性が生まれます。
-
-## DESIGN.md のフォーマット
-
-```markdown
----
-generated: 2026-03-26
-mode: conversation
-version: 1
-platform: web
-token_source: inline
 ---
 
-# Design System: [名前]
+## こんな方に
 
-## TL;DR                    ← 5行で核心を要約
-## Design Principles        ← Creative North Star + 判断基準
-## Visual Language           ← Mood & Tone + Visual Characteristics
-## Color Strategy            ← Palette + Rules
-## Typography                ← Scale + Rules
-## Spacing & Layout          ← Scale + Philosophy + Surface Hierarchy
-## Component Patterns        ← Selection Guide + State Handling
-## Motion & Transitions      ← Optional
-## Design Token References   ← Optional
-```
+- **PdM・エンジニア** — AIでプロトタイプを量産しているが、画面を増やすたびにバラバラになる
+- **デザイナー** — AIにデザインの意図を伝えたいが、うまく伝わらない
+- **デザインに詳しくないエンジニア** — 「なんかいい感じに」で頼んだ結果、毎回違うものが出てくる
+- **すでにサービスが動いている方** — 今の世界観を壊さずに、AIにもそのトーンでつくってほしい
 
-詳細な仕様は [DESIGN-MD-SPEC.md](./DESIGN-MD-SPEC.md) を参照してください。
+デザインの専門知識は必要ありません。わからないことは「わからない」と言えば、AIが補ってくれます。
 
-## 設計原則
+---
 
-1. **骨格は固定、中身はプロダクトに委ねる** — テンプレートルールをデフォルトにしない
-2. **原則 + スケール + 対応表の3層** — コンポーネント個別指定ではなくカテゴリ判断を書く
-3. **否定形は肯定形の代替とペアにする** — Don'tだけで終わらせない
-4. **自己完結 + 参照** — 判断に必要な情報は DESIGN.md 内で完結。具体値は外部参照可
-5. **名前付きルール + 例外パターン** — ルールに名前をつけて参照可能に
-6. **説明は任意の言語OK、仕様値はコードと同じ英語表記**
-7. **DESIGN.md は「制約」ではなく「創造の方向性」** — AIの創造性を殺さない
-8. **自由領域には「トーン」を添える** — 「自由」だけではAIは保守的になる
-9. **本仕様書の例テーブルは「一例」であり「デフォルト」ではない**
+## はじめかた
 
-## ファイル構成
+### Claude Code で使う
+
+Claude Code の画面で、以下の2行を実行するだけです。
 
 ```
-design-md-generator/
-├── DESIGN-MD-SPEC.md                    ← フォーマット仕様書
-├── README.md                            ← このファイル
-├── LICENSE
-└── skills/
-    └── generate-design-md/
-        ├── SKILL.md                     ← 対話生成スキル
-        └── resources/
-            ├── writing-guide.md         ← 良い/悪い記述の Before/After
-            └── examples/
-                ├── saas-dashboard.md    ← BtoB SaaS ダッシュボードの例
-                ├── creator-platform.md  ← クリエイタープラットフォームの例
-                └── minimal-zen.md       ← ミニマル瞑想アプリの例
+/plugin marketplace add saladdays/design-md-generator
+/plugin install generate-design-md@design-md-generator
 ```
 
-## 生成モード
+> これは Claude Code の「プラグイン」という仕組みです。1回入れたら、あとはずっと使えます。
 
-| モード | 入力 | 用途 |
-|---|---|---|
-| **対話生成** | なし（会話で引き出す） | ゼロからデザイン意図を言語化 |
-| **URL抽出** | 既存サイトURL（複数可） | 既存サービスのデザインを言語化 |
-| **画像から生成** | スクリーンショット | ビジュアルからデザイン意図を抽出 |
-| **Figma抽出** | FigmaファイルURL | デザインデータから意図を棚卸し |
-| **デザインシステムから** | tokens.css, tailwind.config等 | 既存定義から原則を帰納 |
-| **実装コードから** | GitHubリポジトリ | 実態からパターンを抽出 |
+### Cursor で使う
 
-MVP では **対話生成** をサポートしています。
+ターミナルで以下を実行して、このリポジトリをダウンロードします。
 
-## Examples
+```bash
+git clone https://github.com/saladdays/design-md-generator.git
+```
 
-### SaaS ダッシュボード（情報密度型）
-→ [saas-dashboard.md](./skills/generate-design-md/resources/examples/saas-dashboard.md)
+Cursor の Composer や Chat で、ダウンロードしたフォルダ内の仕様書（[DESIGN-MD-SPEC.md](./DESIGN-MD-SPEC.md)）と[完成例](#完成例)を渡して、「この仕様でうちのプロダクトの DESIGN.md をつくって」と伝えてみてください。
 
-### クリエイタープラットフォーム（コンテンツ型）
-→ [creator-platform.md](./skills/generate-design-md/resources/examples/creator-platform.md)
+### 他のAIツールで使う
 
-### 瞑想タイマー（ミニマル型）
-→ [minimal-zen.md](./skills/generate-design-md/resources/examples/minimal-zen.md)
+DESIGN.md はただの Markdown ファイルなので、どんなAIツールでも使えます。[仕様書](./DESIGN-MD-SPEC.md)と[完成例](#完成例)を渡して「うちのプロダクト用につくって」と伝えるだけです。
+
+---
+
+## つくりかた
+
+AIと対話するだけです。こんなことを聞かれます：
+
+```
+AI: どんなサービスですか？ 誰が使いますか？
+AI: UIの雰囲気を3つの言葉で表すと？ 参考にしているサービスはありますか？
+AI: 既存のサイトやFigmaはありますか？ あれば見てみますね。
+AI: 避けたい印象はありますか？
+```
+
+既存のサービスURLやFigmaのリンクを渡すと、今のデザインを読み取ったうえで DESIGN.md をつくってくれます。もちろん、まだ何もない状態からでも大丈夫です。
+
+全部答えられなくても大丈夫です。わからないところはAIが良い感じに補ってくれます。5〜10分の対話で DESIGN.md ができあがります。
+
+できあがったら、プロジェクトのいちばん上のフォルダに `DESIGN.md` を置くだけ。CLAUDE.md をお使いなら `@DESIGN.md` の1行を追加しておくと、AIが自動で読んでくれます。
+
+---
+
+## DESIGN.md に何が書いてあるの？
+
+| セクション | ひとことで言うと |
+|---|---|
+| **TL;DR** | デザインを5行でまとめたもの |
+| **Design Principles** | 「うちのサービスらしさ」を言葉にしたもの |
+| **Color Strategy** | 使う色と、どう使い分けるかのルール |
+| **Typography** | 文字の大きさ・書体・行間の決め方 |
+| **Spacing & Layout** | 余白やレイアウトの考え方 |
+| **Component Patterns** | ボタンやカードなどの使い分け |
+
+ポイントは、値だけでなく **「なぜその値なのか」「迷ったらどう判断するか」** まで書いてあること。だからAIが新しい画面をつくるときにも、ブレない判断ができます。
+
+---
+
+## 完成例
+
+3種類のプロダクトで DESIGN.md をつくりました。
+
+- [SaaS ダッシュボード](./plugins/generate-design-md/skills/generate-design-md/resources/examples/saas-dashboard.md) — データ中心の管理画面
+- [クリエイタープラットフォーム](./plugins/generate-design-md/skills/generate-design-md/resources/examples/creator-platform.md) — 記事や写真を共有するサービス
+- [瞑想タイマー](./plugins/generate-design-md/skills/generate-design-md/resources/examples/minimal-zen.md) — とことんシンプルなアプリ
+
+---
+
+## 大切にしていること
+
+- **あなたのプロダクトに合わせる** — テンプレートの押し付けではなく、今あるデザインや世界観を活かしながら、対話のなかでルールを見つけていきます
+- **AIの創造性を活かす** — 色やフォントは固定しつつ、自由に工夫していいところも残します
+- **完璧じゃなくて大丈夫** — まずつくって、使いながら育てましょう
+
+---
+
+## もっと詳しく
+
+- [DESIGN-MD-SPEC.md](./DESIGN-MD-SPEC.md) — フォーマットの仕様書
+- [writing-guide.md](./plugins/generate-design-md/skills/generate-design-md/resources/writing-guide.md) — 良い書き方・良くない書き方の対比
 
 ## 背景
 
-Google Stitch が発表した DESIGN.md フォーマットを分析し、Stitch非依存の汎用 DESIGN.md ジェネレーターとして開発しました。Stitch の思想を参考にしつつ、独自に進化させています。
-
-### 開発で得られた知見
-
-- **制約の非対称性**: AIへの Don't は Do より圧倒的に強く作用する。禁止が多いと創造性が死ぬ
-- **テンプレートバイアス**: 仕様書の例文がデフォルトとしてコピーされる。例には「一例」と明記する
-- **自由領域**: DESIGN.md に「ここは自由に工夫してよい」を明示するとビジュアルの魅力が回復する
-- **問いで書く**: 具体値ではなく判断基準（問い）をスキルに入れると、プロダクト固有の良い判断が生まれる
+[Google Stitch](https://stitch.withgoogle.com/) が2026年3月に発表した [DESIGN.md フォーマット](https://stitch.withgoogle.com/docs/design-md/overview)に着想を得ています。Stitch の「AIが読めるデザインシステム定義」という思想を受け継ぎつつ、特定のツールに依存しない汎用的なフォーマットとして独自に発展させました。Stitch との完全互換ではありませんが、同じ課題意識を持っています。
 
 ## License
 

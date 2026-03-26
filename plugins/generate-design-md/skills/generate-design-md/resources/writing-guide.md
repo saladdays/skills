@@ -3,6 +3,15 @@
 > DESIGN.md を書く際に陥りやすいパターンと、望ましい書き方の対比集。
 > 設計原則に基づき、AIが一貫したビジュアル判断を行えるDESIGN.mdを書くための参照資料。
 
+## セクション優先度（読む順序）
+
+1. **TL;DR** (Section 1) — 必読。ここが間違っていれば全体がズレる
+2. **Creative North Star** (Section 2) — 必読。メタファーの質が全体を決める
+3. **Color Strategy** (Section 3) — 重要。ビジュアルの8割は色で決まる
+4. **Typography** (Section 5) — 重要。可読性に直結
+5. **Spacing & Layout** (Section 6) — 重要。レイアウトの流儀
+6. **残り** (Section 7-16) — 参考。必要に応じて参照
+
 ---
 
 ## 修正の優先順位

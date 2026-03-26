@@ -1,3 +1,4 @@
 tests/
 refs/
 .DS_Store
+.playwright-mcp/

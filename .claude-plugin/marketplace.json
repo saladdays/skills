@@ -1,0 +1,23 @@
+{
+  "name": "design-md-generator",
+  "owner": {
+    "name": "saladdays"
+  },
+  "metadata": {
+    "description": "AIが一貫したUIをつくるための DESIGN.md を、対話で生成するスキル"
+  },
+  "plugins": [
+    {
+      "name": "generate-design-md",
+      "source": "./plugins/generate-design-md",
+      "description": "対話を通じてプロダクトに合った DESIGN.md を生成する",
+      "version": "1.0.0",
+      "author": {
+        "name": "saladdays"
+      },
+      "license": "MIT",
+      "keywords": ["design", "design-system", "ui", "consistency", "DESIGN.md"],
+      "category": "design"
+    }
+  ]
+}
