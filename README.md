@@ -56,16 +56,18 @@ Claude Code の画面で、以下の2行を実行するだけです。
 
 ### Cursor で使う
 
-ターミナルで以下を実行して、あなたのプロジェクトのフォルダに移動してからダウンロードします。
+Cursor の Chat で `/add-plugin` を実行し、`design-md` を検索してインストールしてください。
+
+> [Cursor Marketplace](https://cursor.com/marketplace) にも公開予定です。公開後はワンクリックでインストールできるようになります。
+
+Marketplace に公開されるまでは、ターミナルから手動でルールをコピーできます：
 
 ```bash
 git clone https://github.com/saladdays/design-md-generator.git /tmp/design-md-generator
 cp -r /tmp/design-md-generator/.cursor/rules/ .cursor/rules/
 ```
 
-これで Cursor のルールとして DESIGN.md のガイドラインが読み込まれます。Composer や Chat で「DESIGN.md をつくりたい」と伝えてみてください。
-
-> `.cursor/rules/` は Cursor の [Project Rules](https://docs.cursor.com/context/rules) の仕組みです。プロジェクトごとにAIの振る舞いをカスタマイズできます。
+コピーできたら、Composer や Chat で「DESIGN.md をつくりたい」と伝えてみてください。
 
 ### 他のAIツールで使う
 
