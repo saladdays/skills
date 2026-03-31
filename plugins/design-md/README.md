@@ -47,7 +47,7 @@ Claude Code の画面で、以下の2行を実行するだけです。
 
 ```
 /plugin marketplace add saladdays/agent-skills
-/plugin install design-md@agent-skills
+/plugin install design-md@saladdays-skills
 ```
 
 インストールできたら `/design-md:generate` で DESIGN.md の生成が始まります。
