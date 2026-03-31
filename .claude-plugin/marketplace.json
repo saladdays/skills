@@ -30,6 +30,18 @@
       "license": "MIT",
       "keywords": ["search", "best-practice", "research", "fact-check", "web-search"],
       "category": "research"
+    },
+    {
+      "name": "roundtable",
+      "source": "./plugins/roundtable",
+      "description": "多分野の専門家を動的に選定し、構造化された議論で多角的な評価・提言をまとめる",
+      "version": "1.0.0",
+      "author": {
+        "name": "saladdays"
+      },
+      "license": "MIT",
+      "keywords": ["expert", "review", "deliberation", "multi-agent", "discussion"],
+      "category": "review"
     }
   ]
 }

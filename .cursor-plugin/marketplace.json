@@ -13,6 +13,11 @@
       "name": "search-best-practice",
       "source": "plugins/search-best-practice",
       "description": "世の中のベストプラクティスをWeb検索で調査し、鮮度・信頼性・多角的視点を考慮して構造化レポートにまとめる。"
+    },
+    {
+      "name": "roundtable",
+      "source": "plugins/roundtable",
+      "description": "多分野の専門家を動的に選定し、構造化された議論で多角的な評価・提言をまとめる。"
     }
   ]
 }

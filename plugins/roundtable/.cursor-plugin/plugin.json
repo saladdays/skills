@@ -1,0 +1,10 @@
+{
+  "name": "roundtable",
+  "description": "多分野の専門家を動的に選定し、構造化された議論で多角的な評価・提言をまとめる。",
+  "version": "1.0.0",
+  "author": {
+    "name": "saladdays"
+  },
+  "license": "MIT",
+  "skills": "./skills/"
+}

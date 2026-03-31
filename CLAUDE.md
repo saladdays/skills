@@ -24,3 +24,4 @@ plugins/
 
 - [design-md](./plugins/design-md/) — 対話で DESIGN.md を生成
 - [search-best-practice](./plugins/search-best-practice/) — ベストプラクティスを調査し構造化レポートにまとめる
+- [roundtable](./plugins/roundtable/) — 多分野の専門家を集めて構造化された議論
