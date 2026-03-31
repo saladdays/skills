@@ -23,3 +23,4 @@ plugins/
 ## プラグイン一覧
 
 - [design-md](./plugins/design-md/) — 対話で DESIGN.md を生成
+- [search-best-practice](./plugins/search-best-practice/) — ベストプラクティスを調査し構造化レポートにまとめる

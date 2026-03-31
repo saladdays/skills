@@ -1,5 +1,5 @@
 ---
-name: search-best-practice
+name: search
 description: >
   世の中のベストプラクティスをWeb検索・SNS検索・ツール検索で調査し、鮮度・信頼性・多角的視点を
   考慮して構造化レポートにまとめる。「ベストプラクティスを調べて」「best practice」「最適な方法」
