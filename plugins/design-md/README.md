@@ -60,15 +60,6 @@ Cursor のプラグインマーケットプレイスから `design-md` を検索
 
 > [Cursor Marketplace](https://cursor.com/marketplace) に公開後はワンクリックでインストールできます。
 
-公開前は手動でルールをコピーできます：
-
-```bash
-git clone https://github.com/saladdays/agent-skills.git /tmp/agent-skills
-cp -r /tmp/agent-skills/plugins/design-md/skills/ .cursor/skills/
-```
-
-コピーできたら、Composer や Chat で「DESIGN.md をつくりたい」と伝えてみてください。
-
 ### 他のAIツールで使う
 
 DESIGN.md はただの Markdown ファイルなので、どんなAIツールでも使えます。[仕様書](./DESIGN-MD-SPEC.md)と[完成例](#完成例)を渡して「うちのプロダクト用につくって」と伝えるだけです。

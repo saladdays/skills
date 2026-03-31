@@ -42,16 +42,9 @@ Cursor のプラグインマーケットプレイスから `search-best-practice
 
 > [Cursor Marketplace](https://cursor.com/marketplace) に公開後はワンクリックでインストールできます。
 
-公開前は手動でルールをコピーできます：
-
-```bash
-git clone https://github.com/saladdays/agent-skills.git /tmp/agent-skills
-cp -r /tmp/agent-skills/plugins/search-best-practice/skills/ .cursor/skills/
-```
-
 ### 他のAIツール
 
-`skills/search/SKILL.md` をAIツールのスキルディレクトリにコピーしてください。
+[SKILL.md](./skills/search/SKILL.md) をAIツールのスキルディレクトリにコピーしてください。
 
 ---
 

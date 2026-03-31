@@ -68,11 +68,6 @@ Cursor のプラグインマーケットプレイスから `<プラグイン名>
 
 > [Cursor Marketplace](https://cursor.com/marketplace) に公開後はワンクリックでインストールできます。
 
-公開前は手動でルールをコピーできます：
-
-git clone https://github.com/saladdays/agent-skills.git /tmp/agent-skills
-cp -r /tmp/agent-skills/plugins/<プラグイン名>/skills/ .cursor/skills/
-
 ### 他のAIツール
 
 SKILL.md をAIツールのスキルディレクトリにコピーしてください。
