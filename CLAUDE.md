@@ -24,19 +24,19 @@ plugins/
 
 ### プラグイン名（ディレクトリ名）
 
-- **ケバブケース**（小文字 + ハイフン区切り）: `design-md`, `search-best-practice`, `roundtable`
+- **ケバブケース**（小文字 + ハイフン区切り）: `design-md`, `best-practice`, `roundtable`
 - ユーザーがインストール時に指定する名前になる（`/plugin install <プラグイン名>@saladdays-skills`）
 - 短く、何をするか想像できる名前にする
 
 ### スキル名（skills/ 配下のディレクトリ名）
 
-- **動詞または動作を表す単語**: `generate`, `search`, `convene`
+- **動詞または動作を表す単語**: `generate`, `search`, `start`
 - プラグイン名とは別に、スキルの呼び出し名になる（`/design-md:generate`）
 - 1プラグインに複数スキルを持てるが、メインのスキルは1つに絞る
 
 ### 呼び出し形式
 
-`/<プラグイン名>:<スキル名>` — 例: `/roundtable:convene [議題]`
+`/<プラグイン名>:<スキル名>` — 例: `/roundtable:start [議題]`
 
 ## プラグインの作成手順
 
@@ -159,5 +159,5 @@ SKILL.md をAIツールのスキルディレクトリにコピーしてくださ
 ## プラグイン一覧
 
 - [design-md](./plugins/design-md/) — 対話で DESIGN.md を生成
-- [search-best-practice](./plugins/search-best-practice/) — ベストプラクティスを調査し構造化レポートにまとめる
+- [best-practice](./plugins/best-practice/) — ベストプラクティスを調査し構造化レポートにまとめる
 - [roundtable](./plugins/roundtable/) — 多分野の専門家を集めて構造化された議論

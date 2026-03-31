@@ -1,4 +1,4 @@
-# Search Best Practice — ベストプラクティス調査
+# Best Practice — ベストプラクティス調査
 
 **「ベストプラクティス」を検索して、古い情報や個人の意見に振り回されたことはありませんか？**
 
@@ -29,16 +29,16 @@ Claude Code の画面で、以下の2行を実行するだけです。
 
 ```
 /plugin marketplace add saladdays/agent-skills
-/plugin install search-best-practice@saladdays-skills
+/plugin install best-practice@saladdays-skills
 ```
 
-インストールできたら `/search-best-practice:search [テーマ]` で調査が始まります。
+インストールできたら `/best-practice:search [テーマ]` で調査が始まります。
 
 > これは Claude Code の「プラグイン」という仕組みです。1回入れたら、あとはずっと使えます。
 
 ### Cursor
 
-Cursor のプラグインマーケットプレイスから `search-best-practice` を検索してインストール。
+Cursor のプラグインマーケットプレイスから `best-practice` を検索してインストール。
 
 > [Cursor Marketplace](https://cursor.com/marketplace) に公開後はワンクリックでインストールできます。
 
@@ -53,9 +53,9 @@ Cursor のプラグインマーケットプレイスから `search-best-practice
 知りたいテーマを伝えるだけです。ドメインは自動で判定されます。
 
 ```
-/search-best-practice:search Kubernetes シークレット管理のベストプラクティス
-/search-best-practice:search SaaSの価格設定のベストプラクティス
-/search-best-practice:search 子どもの読書習慣の身につけ方
+/best-practice:search Kubernetes シークレット管理のベストプラクティス
+/best-practice:search SaaSの価格設定のベストプラクティス
+/best-practice:search 子どもの読書習慣の身につけ方
 ```
 
 ### 調査の流れ
