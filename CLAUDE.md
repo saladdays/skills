@@ -1,4 +1,4 @@
-# saladdays/skills
+# saladdays/agent-skills
 
 AI コーディングツール向けのプラグインマーケットプレイス。
 

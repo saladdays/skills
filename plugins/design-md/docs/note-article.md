@@ -9,7 +9,7 @@ AIは、ゼロから1画面を作るのはめちゃくちゃうまい。
 
 0→1は困らない。**1→10で、崩れる。**
 
-この問題を解決するために、**[skills](https://github.com/saladdays/skills)** というツールを作りました。なぜこれが必要だったのか、書いてみます。
+この問題を解決するために、**[agent-skills](https://github.com/saladdays/agent-skills)** というツールを作りました。なぜこれが必要だったのか、書いてみます。
 
 ---
 
@@ -73,6 +73,6 @@ AIは素直すぎるだけなんだと思います。
 
 Google Stitch の思想に着想を得つつ、特定ツールに依存しない汎用フォーマットとして独自に育てたものです。まずは今のサイトのURLを渡すところから始めてみても、いいのかもしれません。
 
-GitHub: https://github.com/saladdays/skills
+GitHub: https://github.com/saladdays/agent-skills
 
 最後まで読んでくださって、ありがとうございました。
