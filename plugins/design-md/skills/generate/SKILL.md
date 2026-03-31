@@ -16,7 +16,7 @@ DESIGN.md は、AIエージェントがUIを生成・修正する際のビジュ
 ## 前提知識
 
 このスキルを実行する前に、以下のリソースを必ず読み込むこと：
-- `../../../../DESIGN-MD-SPEC.md` — フォーマット仕様（セクション構成、3層記述パターン、対応表フォーマット）
+- `../../DESIGN-MD-SPEC.md` — フォーマット仕様（セクション構成、3層記述パターン、対応表フォーマット）
 - `resources/writing-guide.md` — 良い記述と悪い記述の Before/After
 - `resources/examples/` — 完成例3パターン（saas-dashboard, creator-platform, minimal-zen）
 
