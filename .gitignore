@@ -1,4 +1,12 @@
-tests/
-refs/
+# OS
 .DS_Store
+
+# Claude Code local state
+.claude/
+
+# Playwright MCP logs
 .playwright-mcp/
+
+# Plugin test artifacts (generated HTML/screenshots)
+**/tests/
+**/refs/
