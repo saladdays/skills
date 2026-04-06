@@ -131,9 +131,11 @@ mkdir -p .context
 printf '{"hookSpecificOutput":{"hookEventName":"PostCompact","additionalContext":"コンテキストがコンパクションされました。他の応答に先立ち、.context/handoff.md を最新の作業状態で更新してください。.context/.pre-compact-snapshot.tmp に機械的スナップショットがあります。既存の handoff.md の Dead Ends セクションは棄却理由を保持したまま更新してください。更新が完了したら保存結果を1行で報告してください。"}}'
 ```
 
-### 3. CLAUDE.md に自動保存ルールを追加
+### 3. 自動保存ルールを配置
 
-プロジェクトの CLAUDE.md に [auto-save-rules.md](auto-save-rules.md) の「追加する内容」セクションをそのまま追記する。
+`.claude/rules/context-handoff.md` を作成し、[auto-save-rules.md](auto-save-rules.md) の「ファイルの内容」セクションをそのまま書き込む。
+
+プロジェクトの CLAUDE.md は変更しない。`.claude/rules/` のファイルは CLAUDE.md と同等に自動読み込みされる。
 
 ### 4. 初回の handoff.md 生成
 

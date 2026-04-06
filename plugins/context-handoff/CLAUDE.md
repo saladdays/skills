@@ -12,7 +12,7 @@
 | `skills/save/SKILL.md` | 手動保存スキル本体（L3）。初回セットアップもここから |
 | `skills/save/references/handoff-format.md` | handoff.md のフォーマット仕様（SSOT） |
 | `skills/save/references/setup-guide.md` | フック設定・セットアップガイド |
-| `skills/save/references/auto-save-rules.md` | CLAUDE.md に追加する自動保存ルール（L1/L2） |
+| `skills/save/references/auto-save-rules.md` | .claude/rules/ に配置する自動保存ルール（L1/L2） |
 
 ## 設計思想
 
@@ -26,7 +26,7 @@
 
 | 層 | トリガー | AI判断 | 信頼性 |
 |---|---|---|---|
-| L1: 差分追記 | CLAUDE.md ルール | あり | 中（遵守率80-90%） |
+| L1: 差分追記 | .claude/rules/ ルール | あり | 中（遵守率80-90%） |
 | L2: PostCompact | フック自動 | あり（整理） | 中-高 |
 | L3: 手動保存 | `/context-handoff:save` | あり | 最高 |
 
