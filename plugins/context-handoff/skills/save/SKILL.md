@@ -48,7 +48,8 @@ L1/L2 は [auto-save-rules.md](references/auto-save-rules.md) で動作する。
 3. `.context/handoff-{safe-branch}.md` に書き出し（ブランチ名のスラッシュ `/` はハイフン `-` に変換）
 4. 100行 / 1,500トークンの上限を超える場合:
    - 解決済みの Dead Ends を `.context/archive/` に移動
-   - 現在の作業に無関係な Decisions を削除
+   - 現在の作業に無関係な Decisions を `.context/archive/` に移動
+   - archive は直近5ファイルのみ保持（超過分は古いものから削除）
 5. 保存結果を1行で報告: `保存しました: [N]タスク, [N]判断, [N]棄却`
 
 ## 参照ファイル

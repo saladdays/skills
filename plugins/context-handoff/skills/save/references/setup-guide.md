@@ -181,3 +181,38 @@ rm .context/handoff.md .context/handoff-*.md
 ```bash
 chmod +x .context/hooks/*.sh
 ```
+
+---
+
+## マルチユーザー環境での運用
+
+### 個人開発（1人で複数 PC）
+
+`.context/` を git 追跡する（デフォルト）。ブランチ別ファイルなのでコンフリクトしにくい。
+
+```
+git push   （PC-A で）
+git pull   （PC-B で）
+```
+
+### チーム開発（複数人で同一リポジトリ）
+
+handoff.md は個人の作業状態を含むため、チームメンバー間でコンフリクトが起きうる。
+以下のいずれかの方式を選択:
+
+**方式 A: .gitignore に追加（推奨）**
+
+```bash
+echo ".context/" >> .gitignore
+```
+
+チームで共有すべき情報（設計判断等）は CLAUDE.md や DESIGN.md に書く。
+handoff.md は個人のローカル作業メモとして扱う。
+
+**方式 B: ユーザー別ファイル**
+
+handoff.md のファイル名にユーザー名を含める:
+- `.context/handoff-{branch}-{username}.md`
+- SessionStart フックの `SAFE_BRANCH` 行の後に `SAFE_BRANCH="${SAFE_BRANCH}-$(whoami)"` を追加
+
+この方式なら git 追跡しても他のメンバーとコンフリクトしない。
