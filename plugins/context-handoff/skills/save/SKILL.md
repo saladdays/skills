@@ -36,7 +36,8 @@ L1/L2 は [auto-save-rules.md](references/auto-save-rules.md) で動作する。
 3. `.claude/settings.json` に [setup-guide.md](references/setup-guide.md) の hooks 設定と permissions 設定を**マージ**して書き込む（既存設定を上書きしない）
 4. プロジェクトの CLAUDE.md に [auto-save-rules.md](references/auto-save-rules.md) の自動保存ルールを追記
 5. 現在の作業状態から handoff.md を生成（手動保存 L3 の手順に従う）
-6. セットアップ結果を報告し、リカバリー方法を案内:
+6. `.context/` の git 管理について確認: 「個人開発なら git 追跡（別 PC で引き継ぎ可能）、チーム開発なら .gitignore 追加を推奨。どちらにしますか？」
+7. セットアップ結果を報告し、リカバリー方法を案内:
    `handoff.md が壊れた場合は削除して /context-handoff:save で再生成できます`
 
 ### 手動保存（L3）の実行
@@ -45,7 +46,7 @@ L1/L2 は [auto-save-rules.md](references/auto-save-rules.md) で動作する。
    - 優先度: Environment → Dead Ends → Decisions → Status → Next
    - git diff で復元可能な情報は除外
 2. [handoff-format.md](references/handoff-format.md) のフォーマットに従い構造化
-3. `.context/handoff-{safe-branch}.md` に書き出し（ブランチ名のスラッシュ `/` はハイフン `-` に変換）
+3. `.context/handoff-{safe-branch}.md` に書き出し（ブランチ名のスラッシュ `/` とコロン `:` はハイフン `-` に変換）
 4. 100行 / 1,500トークンの上限を超える場合:
    - 解決済みの Dead Ends を `.context/archive/` に移動
    - 現在の作業に無関係な Decisions を `.context/archive/` に移動

@@ -174,6 +174,22 @@ rm .context/handoff.md .context/handoff-*.md
 その後 `/context-handoff:save` を実行して再生成してください。
 `.context/archive/` に過去のスナップショットがあれば参照できます。
 
+### シンボリックリンクが壊れた場合
+
+`.context/handoff.md` が読み込めない場合、リンクが壊れている可能性がある:
+
+```bash
+rm .context/handoff.md
+```
+
+次の SessionStart フック実行時（新セッション開始時）に自動で再作成される。
+すぐに修復したい場合:
+
+```bash
+BRANCH=$(git branch --show-current | sed 's/[\/:]/-/g')
+ln -sf "handoff-${BRANCH}.md" .context/handoff.md
+```
+
 ### フックが動作しない場合
 
 `.context/hooks/` のスクリプトに実行権限があるか確認:
