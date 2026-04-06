@@ -136,10 +136,17 @@ frontmatter の後にスキルの実行手順を Markdown で記述する。
 ```markdown
 ### Claude Code
 
-Claude Code の画面で、以下の2行を実行するだけです。
+Claude Code の画面で、以下を順番に実行してください。
 
+```
 /plugin marketplace add saladdays/agent-skills
+```
+
+マーケットプレイスが追加されたら、続けてインストールします。
+
+```
 /plugin install <プラグイン名>@saladdays-skills
+```
 
 インストールできたら `/<スキル呼び出し>` で開始します。
 

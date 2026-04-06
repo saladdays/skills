@@ -25,10 +25,15 @@ Roundtable はこの問題を解決します。
 
 ### Claude Code
 
-Claude Code の画面で、以下の2行を実行するだけです。
+Claude Code の画面で、以下を順番に実行してください。
 
 ```
 /plugin marketplace add saladdays/agent-skills
+```
+
+マーケットプレイスが追加されたら、続けてインストールします。
+
+```
 /plugin install roundtable@saladdays-skills
 ```
 
