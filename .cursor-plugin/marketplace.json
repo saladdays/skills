@@ -18,6 +18,11 @@
       "name": "roundtable",
       "source": "plugins/roundtable",
       "description": "多分野の専門家を動的に選定し、構造化された議論で多角的な評価・提言をまとめる。"
+    },
+    {
+      "name": "context-handoff",
+      "source": "plugins/context-handoff",
+      "description": "セッション間のコンテキストを自動で引き継ぐ。保存も再開も意識不要。"
     }
   ]
 }

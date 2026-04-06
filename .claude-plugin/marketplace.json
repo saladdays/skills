@@ -42,6 +42,18 @@
       "license": "MIT",
       "keywords": ["expert", "review", "deliberation", "multi-agent", "discussion"],
       "category": "review"
+    },
+    {
+      "name": "context-handoff",
+      "source": "./plugins/context-handoff",
+      "description": "セッション間のコンテキストを自動で引き継ぐ。保存も再開も意識不要",
+      "version": "1.0.0",
+      "author": {
+        "name": "saladdays"
+      },
+      "license": "MIT",
+      "keywords": ["context", "session", "handoff", "memory", "persistence"],
+      "category": "productivity"
     }
   ]
 }
