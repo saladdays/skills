@@ -4,6 +4,9 @@
 # Claude Code local state
 .claude/
 
+# Context handoff (session state)
+.context/
+
 # Playwright MCP logs
 .playwright-mcp/
 
