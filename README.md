@@ -1,3 +1,5 @@
+[English](./README.en.md) | 日本語
+
 # saladdays/agent-skills
 
 AI コーディングツール向けのプラグイン集です。Claude Code と Cursor に対応しています。

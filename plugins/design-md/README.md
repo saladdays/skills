@@ -1,3 +1,5 @@
+[English](./README.en.md) | 日本語
+
 # DESIGN.md Generator
 
 **AIでUIをつくると、画面ごとにデザインがバラバラになりませんか？**

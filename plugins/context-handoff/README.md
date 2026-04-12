@@ -1,3 +1,5 @@
+[English](./README.en.md) | 日本語
+
 # context-handoff
 
 **AI エージェントとの作業で「前のセッションの続き」がそのまま始まる。**
