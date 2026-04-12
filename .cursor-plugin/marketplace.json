@@ -7,22 +7,26 @@
     {
       "name": "design-md",
       "source": "plugins/design-md",
-      "description": "対話を通じてプロダクトに合った DESIGN.md を生成する。AIがつくるUIに一貫性を。"
+      "description": "対話を通じてプロダクトに合った DESIGN.md を生成する。AIがつくるUIに一貫性を。",
+      "logo": "plugins/design-md/assets/logo.png"
     },
     {
       "name": "best-practice",
       "source": "plugins/best-practice",
-      "description": "世の中のベストプラクティスをWeb検索で調査し、鮮度・信頼性・多角的視点を考慮して構造化レポートにまとめる。"
+      "description": "世の中のベストプラクティスをWeb検索で調査し、鮮度・信頼性・多角的視点を考慮して構造化レポートにまとめる。",
+      "logo": "plugins/best-practice/assets/logo.png"
     },
     {
       "name": "roundtable",
       "source": "plugins/roundtable",
-      "description": "多分野の専門家を動的に選定し、構造化された議論で多角的な評価・提言をまとめる。"
+      "description": "多分野の専門家を動的に選定し、構造化された議論で多角的な評価・提言をまとめる。",
+      "logo": "plugins/roundtable/assets/logo.png"
     },
     {
       "name": "context-handoff",
       "source": "plugins/context-handoff",
-      "description": "セッション間のコンテキストを自動で引き継ぐ。保存も再開も意識不要。"
+      "description": "セッション間のコンテキストを自動で引き継ぐ。保存も再開も意識不要。",
+      "logo": "plugins/context-handoff/assets/logo.png"
     }
   ]
 }

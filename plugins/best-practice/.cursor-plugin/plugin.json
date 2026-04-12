@@ -5,6 +5,11 @@
   "author": {
     "name": "saladdays"
   },
+  "homepage": "https://github.com/saladdays/agent-skills",
+  "repository": "https://github.com/saladdays/agent-skills",
   "license": "MIT",
+  "logo": "assets/logo.png",
+  "keywords": ["search", "best-practice", "research", "fact-check", "web-search"],
+  "category": "research",
   "skills": "./skills/"
 }

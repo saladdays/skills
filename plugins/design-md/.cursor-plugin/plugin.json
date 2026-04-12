@@ -5,5 +5,11 @@
   "author": {
     "name": "saladdays"
   },
-  "license": "MIT"
+  "homepage": "https://github.com/saladdays/agent-skills",
+  "repository": "https://github.com/saladdays/agent-skills",
+  "license": "MIT",
+  "logo": "assets/logo.png",
+  "keywords": ["design", "design-system", "ui", "consistency", "DESIGN.md"],
+  "category": "design",
+  "skills": "./skills/"
 }
