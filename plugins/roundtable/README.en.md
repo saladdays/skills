@@ -2,6 +2,8 @@
 
 # Roundtable — Expert Panel Discussion
 
+<img style="max-width:800" alt="image" src="https://github.com/user-attachments/assets/dfa9ffe6-1b0a-430e-9820-669317b4eca5" />
+
 **Have you ever felt uneasy making an important decision with only your own perspective?**
 
 Code architecture, business strategy, design direction — the harder it is to pin down a single right answer, the more you need multiple perspectives. But assembling several experts for a discussion is rarely practical.
