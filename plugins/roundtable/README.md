@@ -2,6 +2,8 @@
 
 # Roundtable — 専門家円卓会議
 
+<img style="max-width:800" alt="image" src="https://github.com/user-attachments/assets/dfa9ffe6-1b0a-430e-9820-669317b4eca5" />
+
 **重要な判断をするとき、自分ひとりの視点では不安になったことはありませんか？**
 
 コードの設計方針、事業戦略、デザインの方向性——答えが1つに定まらない問いほど、多角的な視点が必要です。でも、専門家を何人も集めて議論するのは現実的ではない。
