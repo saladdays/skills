@@ -34,7 +34,7 @@ Without DESIGN.md, 5 screens produced 4 different heading fonts and 4 separate c
 
 If you use [Claude Design](https://support.claude.com/en/articles/14604397-set-up-your-design-system-in-claude-design) to create screens conversationally, you can turn the resulting tokens and design decisions into a DESIGN.md and carry the same judgment straight into Cursor or Claude Code during implementation.
 
-Going the other direction also works: when needed, DESIGN.md can be exported into a W3C Design Tokens Community Group-style `design-tokens.json`, making it usable in Claude Design and other token-aware tools. In practice, that continuity from prototype to production feels especially strong.
+Going the other direction also works: when needed, DESIGN.md can be exported into a W3C Design Tokens Community Group-style `design-tokens.json`, making it usable in Claude Design and other token-aware tools. That format is support infrastructure, not the destination. The core value of DESIGN.md is the authored decision layer above tokens: why a choice exists, what to prioritize when principles conflict, and how to preserve tone across new screens. In practice, that continuity from prototype to production feels especially strong.
 
 ---
 

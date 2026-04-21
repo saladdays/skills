@@ -52,6 +52,7 @@ DESIGN.md は、AIエージェントがUIを生成・修正する際のビジュ
 - Claude Design 固有のファイル名に依存しない
 - 「どのツールが出したか」ではなく「どんな構造を持つファイルか」で扱う
 - トークンファイルがあっても、それだけでは Authored Layer（Creative North Star、競合時の優先順位、自由領域のトーン）は埋まらない。そこは対話で補う
+- W3C DTCG JSON は下支えの交換フォーマットとして扱う。DESIGN.md の価値そのものを、その構造に閉じ込めない
 
 **構造ベースの判定ルール:**
 - **W3C DTCG JSON:** オブジェクトに `$value` があれば token、`$type` があれば型として扱う。`$type` は親グループから継承される前提で解釈する
@@ -310,6 +311,7 @@ DESIGN.md を生成しました。
 ユーザーの承認を得たら、プロジェクトルートに `DESIGN.md` として保存する。
 
 必要であれば、`DESIGN.md` から **W3C DTCG 形式の `design-tokens.json`** を任意出力してよい。
+ただし、これは外部ツールとの接続のための下支えであり、DESIGN.md の本文を置き換えるものではない。
 
 **W3C DTCG JSON を出力する場合の必須手順:**
 1. WebFetch で最新の公式 format spec（`https://design-tokens.github.io/community-group/format/`）を読む
@@ -324,6 +326,11 @@ DESIGN.md を生成しました。
 - Font size / spacing / radius / border width → `dimension`
 - Shadow → `shadow`
 - Motion duration → `duration`
+
+**判断原則:**
+- 標準に落とせるものは落とす
+- ただし、Creative North Star / 競合時の優先順位 / 自由領域のトーンのような上位判断は DESIGN.md 本文に残す
+- 「W3C DTCG に準拠していること」自体を目的化しない
 
 保存後のメッセージ：
 ```
