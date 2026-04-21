@@ -198,6 +198,31 @@ token_source: inline
 
 ---
 
+## Effects
+
+### Radius Scale
+
+**原則:** 角丸は「紙の端のやわらかさ」を示すために使う。丸さで楽しさを出すのではなく、読書体験を邪魔しない穏やかな境界にとどめる。
+
+| Token | Value | Use case | Reasoning |
+|---|---|---|---|
+| `radius-sm` | 4px | ボタン、入力、タグ | UIクロムを控えめに保つ |
+| `radius-md` | 8px | カード、ドロップダウン、モーダル | 紙の束のようなまとまりを作る |
+| `radius-lg` | 12px | 画像コンテナ、カバー画像 | 視覚コンテンツだけ少し柔らかく扱う |
+| `radius-full` | 9999px | 小さなチップ、アイコン背景のみ | 大きな面には使わない |
+
+### Shadow Scale
+
+**原則:** 影は「浮遊している一時UI」にだけ使う。記事や作品カードの常時装飾には使わない。
+
+| Token | Value | Use case | Reasoning |
+|---|---|---|---|
+| `shadow-none` | none | 記事カード、本文、プロフィールカード | コンテンツが主役であり、UIが前に出すぎないようにする |
+| `shadow-sm` | `0 1px 3px rgba(0,0,0,0.08)` | ユーザーメニュー、フローティングツールバー | 静かな浮きで操作可能な層を示す |
+| `shadow-md` | `0 4px 12px rgba(0,0,0,0.12)` | 公開確認、削除確認モーダル | 注意の切り替えを明確にする |
+
+---
+
 ## Component Patterns
 
 ### Selection Guide
@@ -327,11 +352,3 @@ Card 内に Card をネストしない。記事カード内のクリエイター
 | radius | `--atelier-radius-sm`, `--atelier-radius-md` |
 | shadow | `--atelier-shadow-sm`, `--atelier-shadow-md` |
 | motion | `--atelier-motion-standard`, `--atelier-motion-emphasis` |
-
-### Border Radius Scale
-
-| Token | Value | Use case |
-|---|---|---|
-| `radius-sm` | 4px | ボタン、入力フィールド、タグ |
-| `radius-md` | 8px | カード、ドロップダウン、モーダル |
-| `radius-lg` | 12px | 画像コンテナ、カバー画像の角 |

@@ -1,17 +1,17 @@
 ---
 name: generate
-description: 対話を通じてプロダクトに合った DESIGN.md を生成する。AIがつくるUIに一貫性を。
+description: 対話または既存トークンファイル（W3C DTCG / CSS variables など）をもとに、プロダクトに合った DESIGN.md を生成する。AIがつくるUIに一貫性を。
 argument-hint: [プロダクトの説明やURL（省略可）]
 ---
 
 # generate-design-md
 
-AIが一貫したUIを生成するための DESIGN.md を、対話形式で作成するスキル。
+AIが一貫したUIを生成するための DESIGN.md を、対話または既存トークンの取り込みから作成するスキル。
 
 ## 概要
 
 DESIGN.md は、AIエージェントがUIを生成・修正する際のビジュアル判断基準を定義するMarkdownファイルです。
-このスキルは対話を通じてユーザーのデザイン意図を引き出し、DESIGN.md を生成します。
+このスキルは対話を通じてユーザーのデザイン意図を引き出し、必要に応じて既存のトークンファイルを取り込みながら DESIGN.md を生成します。
 
 ## 前提知識
 
@@ -44,6 +44,32 @@ DESIGN.md は、AIエージェントがUIを生成・修正する際のビジュ
   - 更新 → 診断で指摘した箇所を起点に、変更したい箇所をヒアリング
   - 新規 → Step 1 へ（既存ファイルは上書き前に確認を取る）
 
+### Step 0.5: 入力ファイルの棚卸し
+
+ユーザーが渡したファイル、プロジェクト内のトークンファイル、既存CSSを確認し、「何を下敷きにできるか」を判断する。
+
+**重要:**
+- Claude Design 固有のファイル名に依存しない
+- 「どのツールが出したか」ではなく「どんな構造を持つファイルか」で扱う
+- トークンファイルがあっても、それだけでは Authored Layer（Creative North Star、競合時の優先順位、自由領域のトーン）は埋まらない。そこは対話で補う
+
+**構造ベースの判定ルール:**
+- **W3C DTCG JSON:** オブジェクトに `$value` があれば token、`$type` があれば型として扱う。`$type` は親グループから継承される前提で解釈する
+- **CSS Custom Properties:** `:root` やテーマスコープ内の `--color-*`, `--space-*`, `--font-*`, `--radius-*`, `--shadow-*` などをトークン候補として読む
+- **無効な構造:** 1つのオブジェクトが `$value` を持ちながら子token/groupも持つ場合は不正。ユーザーに「このファイルは token と group が混在しているため、そのままは読めない」と伝える
+
+**W3C DTCG JSON の最低限の解釈:**
+- `color` → Color Strategy
+- `fontFamily`, `fontWeight`, `dimension`（font size / line height を含む場合）→ Typography
+- `dimension`（spacing / gap / inset 系）→ Spacing & Layout
+- `dimension`（radius / border-width / stroke 系）→ Effects
+- `shadow` → Effects
+- `duration`, `cubicBezier` → Motion & Transitions
+- `dimension` は汎用型なので、キー名と用途から spacing / radius / border / sizing を判定する
+
+候補が見つかったらユーザーに短く確認する:
+「既存のトークンファイルが見つかりました。これは値の正として取り込みますか？ それとも参考情報として扱いますか？」
+
 ### Step 1: ヒアリング（最大5ターン）
 
 **進め方の原則:**
@@ -65,7 +91,7 @@ DESIGN.md は、AIエージェントがUIを生成・修正する際のビジュ
    → Typography（Serif/Sansの判断）、Layout（コンテンツ幅）、Density Guide の素材
 
 **任意で聞くこと（ユーザーが答えられれば）：**
-4. 「既存のデザインシステムやトークンファイルはありますか？」
+4. 「既存のデザインシステムやトークンファイルはありますか？（W3C DTCG JSON、CSS variables、tokens.json など）」
    → Token References、具体値の取得
 5. 「絶対に避けたい印象やスタイルはありますか？」
    → Global Constraints、Creative North Star の "This does NOT mean"
@@ -104,6 +130,10 @@ DESIGN.md は、AIエージェントがUIを生成・修正する際のビジュ
 **フォーマット:**
 - `../../DESIGN-MD-SPEC.md` の構成に厳密に従う
 - Frontmatter を含める（generated, mode, version, platform, token_source）
+- `mode` は主な入力源に合わせて選ぶ
+  - 対話中心 → `conversation`
+  - 外部トークンファイル中心 → `tokens-import`
+  - URL/Figma/コード + トークン併用 → `hybrid`
 - ユーザーの回答量に応じてミニマム/スタンダードを判断する
   - 情報が少ない → ミニマム（4セクション、80-120行）
   - 情報が十分 → スタンダード（7セクション、250-350行）
@@ -112,6 +142,13 @@ DESIGN.md は、AIエージェントがUIを生成・修正する際のビジュ
 - 各セクションで「原則（Why）→ スケール（What）→ 対応表（When）」の順に書く
 - 対応表は必ずテーブル形式で、Reasoning 列を含める
 - Color の対応表には Do/Don't 列を含める
+
+**トークン取り込み時の扱い:**
+- 外部トークンファイルの値は「何が既に決まっているか」を理解するための出発点として使う
+- 値があっても理由がない場合は、その値を盲信せず「なぜその値なのか」を対話または周辺文脈から補う
+- `token_source` には実際の参照元パスを書く。複数ある場合は最も支配的なソースを書くか、`Design Token References` セクションで列挙する
+- W3C DTCG の `dimension` は spacing / radius / border-width / sizing に分かれうるため、名称と利用文脈を確認してからマッピングする
+- `shadow` / `radius` / `border` の判断基準が明示的に存在する場合は `Effects` セクションを生成する
 
 **名前付きルール:**
 - プロダクト固有のルールに名前をつける
@@ -137,6 +174,7 @@ DESIGN.md は、AIエージェントがUIを生成・修正する際のビジュ
 
 **具体値 vs 原則:**
 - カラーパレット、タイポスケール、スペーシングスケール、ブレイクポイント → 具体値必須
+- Radius / Shadow / Border が既に定義されている場合 → `Effects` に具体値必須
 - レイアウト方針、アニメーション、トーン → 原則 + 代表例で十分
 - カラー値は Hex でもデザイントークン変数名でもよい
 
@@ -200,6 +238,8 @@ DESIGN.md は、AIエージェントがUIを生成・修正する際のビジュ
 - [ ] Creative North Star に「This does NOT mean」があるか
 - [ ] 対応表がテーブル形式で Reasoning 列があるか
 - [ ] Color テーブルに Do/Don't 列があるか
+- [ ] 外部トークンを取り込んだ場合、`mode` と `token_source` が入力実態に合っているか
+- [ ] radius / shadow / border のトークンが主要な判断材料なら `Effects` セクションがあるか
 
 **品質チェック:**
 - [ ] 名前付きルールがプロダクト固有か（テンプレートの流用でないか）
@@ -208,6 +248,7 @@ DESIGN.md は、AIエージェントがUIを生成・修正する際のビジュ
 - [ ] 各セクションに具体値またはトークン名が含まれているか（曖昧な形容詞だけでないか）
 - [ ] 推奨行数の範囲内か
 - [ ] Typography、State Handling 等の主要対応表に Reasoning 列があるか（Density Guide は Use case 列で代替可）
+- [ ] 取り込んだトークン値をそのまま並べるだけで終わっていないか（Why / When が補われているか）
 
 **表現力チェック:**
 - [ ] 日本語等CJK言語の長文コンテンツがある場合、body の line-height は言語特性を考慮した値か？
@@ -268,13 +309,32 @@ DESIGN.md を生成しました。
 
 ユーザーの承認を得たら、プロジェクトルートに `DESIGN.md` として保存する。
 
+必要であれば、`DESIGN.md` から **W3C DTCG 形式の `design-tokens.json`** を任意出力してよい。
+
+**W3C DTCG JSON を出力する場合の必須手順:**
+1. WebFetch で最新の公式 format spec（`https://design-tokens.github.io/community-group/format/`）を読む
+2. その時点の仕様に合わせて JSON を組み立てる。記憶ベースで決め打ちしない
+3. 参照した仕様URLと取得日を、隣接ドキュメント（例: `design-tokens.meta.md`）または生成時の説明文に記録する
+4. `dimension` は spacing / radius / border-width / sizing を区別して出力し、用途が曖昧な値はユーザーに確認する
+
+**出力の目安:**
+- Color → `color`
+- Font family → `fontFamily`
+- Font weight → `fontWeight`
+- Font size / spacing / radius / border width → `dimension`
+- Shadow → `shadow`
+- Motion duration → `duration`
+
 保存後のメッセージ：
 ```
 DESIGN.md をプロジェクトルートに保存しました。
 
+[必要な場合のみ] W3C DTCG 形式の `design-tokens.json` も出力しました。
+
 **次のステップ（推奨）:**
 1. CLAUDE.md に `@DESIGN.md` を追記すると、AIが自動で参照します
-2. 使いながら気になった点があれば、いつでも修正してください
+2. Claude Design や他のトークン対応ツールに渡す場合は、最新仕様に合わせた `design-tokens.json` を併用できます
+3. 使いながら気になった点があれば、いつでも修正してください
 
 **この DESIGN.md を見直すタイミング:**
 - 画面数が10を超えたとき（Component Patterns の拡充が必要になります）
