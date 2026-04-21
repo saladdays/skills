@@ -358,6 +358,7 @@ DESIGN.md を書いたら、以下を確認する。
 | 対応表はテーブル形式で、Reasoning列があるか |  |
 | Color にはDo/Don't列があるか |  |
 | Typography はContext列でユースケースが分かるか |  |
+| Radius / Shadow / Border が判断材料なら Effects セクションがあるか |  |
 | コンポーネントは個別スタイルではなくカテゴリ判断か |  |
 | ルールには名前がついているか |  |
 | 例外には「理由」が付いているか |  |
@@ -630,3 +631,39 @@ PMがダッシュボードの左上→右下で全プロジェクトの健全性
 ```
 
 **ポイント:** メタファーに依存する。「本文との区別が即座にできるか」が基準。ボーダー+背景もインデントのみも、プロダクトの世界観に合っていれば正解。
+
+---
+
+## 17. Effects（Radius / Shadow / Border）
+
+W3C DTCG や既存トークンファイルに radius / shadow / border 系の値があるなら、DESIGN.md 側でも判断基準に昇格させる。
+
+### ❌ BAD
+
+```markdown
+### Visual Characteristics
+- 角丸: いい感じ
+- 影: 控えめ
+```
+
+**理由:** 値も使い分けも分からない。既存トークンがあるのに DESIGN.md 側で判断基準に変換されていない。
+
+### ✅ GOOD
+
+```markdown
+## Effects
+
+### Radius Scale
+| Token | Value | Use case | Reasoning |
+|---|---|---|---|
+| `radius-sm` | 4px | 入力、ボタン | 控えめな柔らかさ |
+| `radius-md` | 8px | カード、ポップオーバー | サーフェスとしてのまとまり |
+
+### Shadow Scale
+| Token | Value | Use case | Reasoning |
+|---|---|---|---|
+| `shadow-none` | none | 通常サーフェス | 色差とボーダーで十分 |
+| `shadow-md` | 0 4px 12px rgba(0,0,0,0.12) | Modal | 最上位レイヤーの占有を示す |
+```
+
+**ポイント:** 値を列挙するだけでなく、「どの場面まで丸めるか」「影をどの階層に限定するか」を判断基準として書く。
